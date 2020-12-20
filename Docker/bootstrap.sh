@@ -22,6 +22,15 @@ apt-get install -y \
 apt -y clean
 apt -y autoremove
 
+##
+## Install Docker-compose
+##
+curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+
+
+# Asegurarse que el servicio arraca y queda activo.
 systemctl enable docker
 systemctl start docker
+
 
