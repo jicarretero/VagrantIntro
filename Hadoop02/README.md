@@ -8,3 +8,4 @@ El factor de Replica es 1, pero estas configuraciones se pueden alterar en el di
 
 Además, la instalación está dividia en multiples partes, demostrando que se pueden dividir los scripts en varios, es decir, que no es necesario la existencia de un único script de provisión sino que se pueden encadenar varios.
 
+Es interesante ver como podemos generar la clave en Ruby antes de empezar a levantar las maquinas virtuales. Se hace en lenguaje Ruby y luego ya levantamos las máquinas virtuales.

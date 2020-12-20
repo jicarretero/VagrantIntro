@@ -2,8 +2,20 @@ NODES=3
 BOX="ubuntu/focal64"
 BASE_IP="192.168.50."
 
-gen_key=true
 
+# Generar Key antes de comenzar a levantar las VMs si no existe ya.
+if !File.file?("id_rsa") and !File.file?("id_rsa.pub") then
+    require 'net/ssh'
+    
+    key = OpenSSL::PKey::RSA.generate(2048)
+    type = key.ssh_type
+    data = [ key.to_blob ].pack('m0')
+    openssh_format = "#{type} #{data}"
+    File.open('id_rsa', 'w') { |file| file.write("#{key}") }
+    File.open('id_rsa.pub', 'w') { |file| file.write("#{openssh_format}") }
+end
+
+# Ahora ya levantamos las VMs
 Vagrant.configure("2") do |config|  #{
   config.vm.box = BOX
   config.vm.provision "shell", :path => "scripts/0_install_software.sh"
@@ -15,10 +27,6 @@ Vagrant.configure("2") do |config|  #{
               node.vm.box = "ubuntu/focal64"
               node.vm.network "private_network", ip: ip, nic_type: "virtio"
               node.vm.hostname = hostname
-              if gen_key then
-                      node.vm.provision :shell, path:"scripts/create_key.sh"
-                      gen_key = false
-              end
 
               if i==0 then
                       node.vm.provision :shell, path:"scripts/add_user_master.sh"
