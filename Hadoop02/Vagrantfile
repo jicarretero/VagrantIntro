@@ -1,0 +1,51 @@
+NODES=3
+BOX="ubuntu/focal64"
+BASE_IP="192.168.50."
+
+gen_key=true
+
+Vagrant.configure("2") do |config|  #{
+  config.vm.box = BOX
+  config.vm.provision "shell", :path => "scripts/0_install_software.sh"
+
+  ((NODES-1)..0).step(-1).each do |i| #{
+          hostname="hadoop#{i}"
+          config.vm.define hostname do |node| #{
+              ip="#{BASE_IP}#{i+20}"
+              node.vm.box = "ubuntu/focal64"
+              node.vm.network "private_network", ip: ip, nic_type: "virtio"
+              node.vm.hostname = hostname
+              if gen_key then
+                      node.vm.provision :shell, path:"scripts/create_key.sh"
+                      gen_key = false
+              end
+
+              if i==0 then
+                      node.vm.provision :shell, path:"scripts/add_user_master.sh"
+              else
+                      node.vm.provision :shell, path:"scripts/add_user_nodes.sh"
+              end
+              node.vm.provision :shell, path:"scripts/create_hadoop_directories.sh"
+              node.vm.provision :shell, path:"scripts/set_up_config.sh",
+                 env: {
+                    "NODES" => NODES,
+                    "BASE_IP" => BASE_IP
+                 }
+
+              if i==0 then
+                      node.vm.provision :shell, path:"scripts/format_hdfs_and_start.sh"
+
+              end
+              node.disksize.size = '40GB'
+              node.vm.provider :virtualbox do |vb| #{
+                  vb.name = hostname
+                  vb.memory = "2048"
+                  vb.cpus = 2
+                  vb.customize ["modifyvm", :id, "--nictype1", "virtio"]
+                  vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+              end #}
+          end #}
+  end #}
+
+end #}
+

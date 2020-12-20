@@ -1,0 +1,9 @@
+- hosts: all
+  tasks:
+    - name: Install Apache2, curl, lynx
+      become: true
+      apt:
+        name: ['apache2', 'lynx', 'curl']
+        state: present
+        update_cache: yes
+        

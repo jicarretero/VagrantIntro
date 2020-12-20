@@ -1,0 +1,15 @@
+Vagrant.configure("2") do |config|
+    config.vm.box = "ubuntu/focal64"
+
+    # Configuramos el nombre del Host
+    config.vm.hostname = "apache"
+
+    # Le decimos cual es el script de configuracion que 
+    # queremos ejecutar (bootstrap.sh en este caso)
+    config.vm.provision :shell, path:"bootstrap.sh"
+
+   # Hacemos Port Forwarding para poder acceder al servidor 
+   # Apache que instalamos
+   config.vm.network "forwarded_port", guest: 80, host: 8880
+end
+

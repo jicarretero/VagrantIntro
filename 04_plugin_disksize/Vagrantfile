@@ -1,0 +1,24 @@
+Vagrant.configure("2") do |config|
+    config.vm.box = "ubuntu/bionic64"
+
+    # Configuramos el nombre del Host
+    config.vm.hostname = "apache"
+
+    # Le decimos cual es el script de configuracion que queremos ejecutar
+    config.vm.provision :shell, path:"bootstrap.sh"
+
+    # Hacemos Port Forwarding para poder acceder al servidor Apache que instalamos
+    config.vm.network "forwarded_port", guest: 80, host: 8880
+
+    # Aumentamos el tamaño de nuestro disco duro a 60GB, por ejemplo
+    config.disksize.size = '60GB'
+
+   # Configuramos el Hardware de nuestra VM.
+   config.vm.provider "virtualbox" do |vb|
+    vb.name = "apache"
+    vb.memory = "2048"   # 2048 Mb de RAM
+    vb.cpus = 3          # 3 Cores
+    vb.customize ["modifyvm", :id, "--nictype1", "virtio"]  #Interfaz de red paravirtualizada
+  end
+end
+

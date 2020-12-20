@@ -1,0 +1,7 @@
+hdfs dfs -mkdir -p /comprobacion/lorem1
+hdfs dfs -mkdir -p /comprobacion/lorem2
+
+hdfs dfs -copyFromLocal ./Lorem1.txt /comprobacion/lorem1
+hdfs dfs -copyFromLocal ./Lorem2.txt /comprobacion/lorem2
+
+hdfs dfs -ls /

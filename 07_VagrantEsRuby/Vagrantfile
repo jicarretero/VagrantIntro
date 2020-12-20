@@ -1,0 +1,9 @@
+print("Hola mundo\n\n")
+
+a=4
+
+print "En Ruby... #{a} esto es una sustitucion de variable\n"
+
+(1..4).each do |foo|
+   print("This is #{foo}\n")
+end
