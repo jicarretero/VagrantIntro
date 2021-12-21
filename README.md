@@ -5,7 +5,7 @@ Vagrant es una herramienta que nos permite crear máquinas virtuales usando alg�
 
 En este punto voy a centrarme simplemente en crear un repositorio que de alguna forma ayude a seguir una pequeña sucesión a la hora de configurar Vagrant para llegar a hacer algo más o menos útil con esta potente herramienta. Deplegar máquinas virtuales de forma que se puedan configurar automáticamente con algún tipo de Software que pueda resultar útil.
 
-[01_Init](./01_init/READE.md) muestra la primera experiencia con Vagrant. Simplemente muestra como crear una nueva máquina virtual con sistema Operativo Ubuntu 20.04
+[01_Init](blob/main/01_Init/README.md) muestra la primera experiencia con Vagrant. Simplemente muestra como crear una nueva máquina virtual con sistema Operativo Ubuntu 20.04
 
 [02_bootstrap_apache](02_bootstrap_apache/README.md) Muestra como levantar la máquina virtual e instalar el servidor Apache2 en Ubuntu 20.04. Es la primera prueba de provisión de software automatizado.
 
