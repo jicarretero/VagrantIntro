@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "manager" do |manager|
       manager.vm.box = "ubuntu/focal64"
-      manager.vm.network "private_network", ip: "192.168.50.10", nic_type: "virtio"
+      manager.vm.network "private_network", ip: "192.168.56.10", nic_type: "virtio"
       manager.vm.hostname = "manager"
       manager.vm.provision :shell, path:"bootstrap.sh"
       manager.disksize.size = '20GB'
@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "docker1" do |docker1|
       docker1.vm.box = "ubuntu/focal64"
-      docker1.vm.network "private_network", ip: "192.168.50.11", nic_type: "virtio"
+      docker1.vm.network "private_network", ip: "192.168.56.11", nic_type: "virtio"
       docker1.vm.hostname = "docker1"
       docker1.vm.provision :shell, path:"bootstrap.sh"
       docker1.disksize.size = '20GB'
@@ -43,7 +43,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "docker2" do |docker2|
       docker2.vm.box = "ubuntu/focal64"
-      docker2.vm.network "private_network", ip: "192.168.50.12", nic_type: "virtio"
+      docker2.vm.network "private_network", ip: "192.168.56.12", nic_type: "virtio"
       docker2.vm.hostname = "docker2"
       docker2.vm.provision :shell, path:"bootstrap.sh"
       docker2.disksize.size = '20GB'
@@ -59,4 +59,3 @@ Vagrant.configure("2") do |config|
       end
   end
 end
-

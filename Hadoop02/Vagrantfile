@@ -1,6 +1,6 @@
 NODES=3
 BOX="ubuntu/focal64"
-BASE_IP="192.168.50."
+BASE_IP="192.168.56."
 
 
 # Generar Key antes de comenzar a levantar las VMs si no existe ya.
