@@ -1,8 +1,8 @@
 Vagrant.configure("2") do |config|
-  
+
    config.vm.define "apache" do |wordpresshost|  # Definicion Wordpress
       wordpresshost.vm.box = "ubuntu/focal64"
-      wordpresshost.vm.network "private_network", ip: "192.168.50.10", nic_type: "virtio"
+      wordpresshost.vm.network "private_network", ip: "192.168.56.10", nic_type: "virtio"
       wordpresshost.vm.hostname = "apache"
       wordpresshost.vm.provider :virtualbox do |vb|
           vb.name = "apache2"
@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "mysql" do |mysqlhost|   # Definicion VM MySQL
       mysqlhost.vm.box = "ubuntu/focal64"
-      mysqlhost.vm.network "private_network", ip: "192.168.50.11", nic_type: "virtio"
+      mysqlhost.vm.network "private_network", ip: "192.168.56.11", nic_type: "virtio"
       mysqlhost.vm.hostname = "mysql"
       mysqlhost.vm.provider :virtualbox do |vb|
           vb.name = "mysqlhost"
@@ -28,4 +28,3 @@ Vagrant.configure("2") do |config|
       mysqlhost.vm.provision :shell, path:"install_mysql.sh"
   end
 end
-
