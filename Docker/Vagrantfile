@@ -1,5 +1,5 @@
 Vagrant.configure("2") do |config|
-   config.vm.box = "ubuntu/bionic64"
+   config.vm.box = "ubuntu/jammy64"
     
    # Configuramos el nombre del Host
    config.vm.hostname = "docker"
@@ -8,10 +8,10 @@ Vagrant.configure("2") do |config|
    config.vm.provision :shell, path:"bootstrap.sh"
 
    # Aumentamos el tamaño de nuestro disco duro
-   config.disksize.size = '20GB'
+   config.disksize.size = '40GB'
 
    # Ponemos una red privada:
-   config.vm.network "private_network", ip: "192.168.40.10", nic_type: "virtio"
+   config.vm.network "private_network", ip: "192.168.56.10", nic_type: "virtio"
 
    # Configuramos el Hardware de nuestra VM.
    config.vm.provider "virtualbox" do |vb|

@@ -2,13 +2,13 @@
 
 Se muestra aquí como desplegar una primera máquina virtual sin ningún tipo de configuración extra. Para ello, simplemente tenemos que ejecutar el comando:
 
-    vagrant init ubuntu/focal64
+    vagrant init ubuntu/jammy64
     
 En el directorio actual, nos va a crear un fichero llamado __Vagrantfile__. Este fichero es bastante largo y abultado, sin embargo, si buscamos el contenido real del fichero, la configuración efectiva tendremos:
 
     egrep -v "^ *($|#)" Vagrantfile  
     Vagrant.configure("2") do |config|
-        config.vm.box = "ubuntu/focal64"
+        config.vm.box = "ubuntu/jammy64"
     end
 
 Una vez creado el Vagrant file, simplemente ejecutando el comando:

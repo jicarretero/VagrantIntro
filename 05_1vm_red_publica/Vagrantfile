@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
 
   config.vm.define "host1" do |host1|  # Definicion para una primera VM.
-      host1.vm.box = "ubuntu/focal64"
+      host1.vm.box = "ubuntu/jammy64"
       host1.vm.network "public_network", nic_type: "virtio", bridge: "enp0s20f0u1u4"
       host1.vm.hostname = "host1"
       host1.vm.provider :virtualbox do |vb|
