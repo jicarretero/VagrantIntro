@@ -1,6 +1,7 @@
 #!/bin/bash
 
 sed -i '/127.0.1.1.*/d' /etc/hosts
+sed -i '/127.0.2.1.*/d' /etc/hosts
 
 > /opt/hadoop/etc/hadoop/workers
 

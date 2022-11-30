@@ -13,19 +13,19 @@ apt install -y \
    curl \
    lsof \
    vim \
-   openjdk-8-jdk \
+   default-jdk \
    wget
 
 apt clean -y
 
-[ -f /vagrant/hadoop-3.3.0.tar.gz ] || \
-    wget -P /vagrant https://mirrors.sonic.net/apache/hadoop/common/hadoop-3.3.0/hadoop-3.3.0.tar.gz
+[ -f /vagrant/hadoop-3.3.4.tar.gz ] || \
+    wget -P /vagrant https://mirrors.sonic.net/apache/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz
 
-tar zxvf /vagrant/hadoop-3.3.0.tar.gz  -C /opt
-mv /opt/hadoop-3.3.0 /opt/hadoop
+tar zxvf /vagrant/hadoop-3.3.4.tar.gz  -C /opt
+mv /opt/hadoop-3.3.4 /opt/hadoop
 
 cat << EOT >> /opt/hadoop/etc/vagrant.vagrant-env.sh
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+export JAVA_HOME=/usr/lib/jvm/default-java/
 export HADOOP_HOME=/opt/hadoop
 export HDFS_NAMENODE_USER=vagrant
 export HDFS_DATANODE_USER=vagrant
@@ -60,7 +60,7 @@ mkdir -p /opt/hadoop/logs || true ; chown -R vagrant.vagrant /opt/hadoop/logs
 ## 
 cat << EOT > /etc/environment
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/hadoop/bin:/opt/hadoop/sbin"
-JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/jre"
+JAVA_HOME="/usr/lib/jvm/default-java"
 EOT
 
 sed -i '/127.0.1.1.*/d' /etc/hosts
